@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post">
+    <table>
+        <tr>
+            <td><textarea name="urls"></textarea></td>
+            <td>
+                <button type="submit">test</button>
+            </td>
+        </tr>
+    </table>
+
+    {% for result in result_list %}
+    <div>
+        <span> {{result}}<span/>
+    </div>
+    <hr>
+    <hr>
+    <hr>
+    <hr>
+    <hr>
+    {% endfor %}
+</form>
+</body>
+</html>
