@@ -28,7 +28,18 @@ def run(url_list):
             price = browser.find_element(By.XPATH, '//*[@id="udemy"]/div[1]/div[2]/div/div/div[1]/div[2]/div[1]/div/div[1]/div[2]/div/div/div[1]/div/div[2]/div/div/div[1]/span[2]/span').text
             course_name = browser.find_element(By.XPATH, '//*[@id="udemy"]/div[1]/div[2]/div/div/div[1]/div[3]/div/div/div[3]/div/h1').text
 
-            result_list.append(f"{price} - {course_name}")
+            old_price = None
+            discount = None
+            try:
+                old_price = browser.find_element(By.XPATH, '//*[@id="udemy"]/div[1]/div[2]/div/div/div[1]/div[2]/div[1]/div/div[1]/div[2]/div/div/div[1]/div/div[2]/div/div/div[2]/div/span[2]/s/span').text
+                discount = browser.find_element(By.XPATH, '//*[@id="udemy"]/div[1]/div[2]/div/div/div[1]/div[2]/div[1]/div/div[1]/div[2]/div/div/div[1]/div/div[2]/div/div/div[3]/span[2]').text
+            except Exception as e:
+                pass
+
+            if old_price and discount:
+                result_list.append(f"{price} - {old_price} - {discount} - {course_name}")
+            else:
+                result_list.append(f"{price} - {course_name}")
         except Exception as e:
             error_list.append(f"error: {e} in {url}")
             continue
